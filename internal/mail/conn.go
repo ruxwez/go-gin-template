@@ -3,7 +3,7 @@ package mail
 import (
 	"bytes"
 	"fmt"
-	"go-gin-template/internal/infrastructure/utils/vars"
+	"go-gin-template/internal/utils/vars"
 	"gopkg.in/gomail.v2"
 	"html/template"
 	"log"

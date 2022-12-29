@@ -3,7 +3,7 @@ package logs
 import (
 	"fmt"
 	"github.com/gtuk/discordwebhook"
-	"go-gin-template/internal/infrastructure/utils/vars"
+	vars2 "go-gin-template/internal/utils/vars"
 )
 
 func SendDiscord(_type, message string) {
@@ -11,11 +11,11 @@ func SendDiscord(_type, message string) {
 	var (
 		title      string
 		colort     string
-		footerText = vars.AppName
-		footerIcon = vars.AppIconNotTransparent
+		footerText = vars2.AppName
+		footerIcon = vars2.AppIconNotTransparent
 	)
 	switch _type {
-	case vars.TypeLogs.Error:
+	case vars2.TypeLogs.Error:
 		title = "API Core - ERROR"
 		colort = "14296837"
 		msg = discordwebhook.Message{
@@ -47,7 +47,7 @@ func SendDiscord(_type, message string) {
 				},
 			},
 		}
-	case vars.TypeLogs.Warning:
+	case vars2.TypeLogs.Warning:
 		title = "API Core - ALERTA"
 		colort = "14296837"
 		msg = discordwebhook.Message{
@@ -69,8 +69,8 @@ func SendDiscord(_type, message string) {
 		}
 	}
 
-	if err := discordwebhook.SendMessage(vars.DiscordHook, msg); err != nil {
-		AddLogFile(fmt.Sprintf("2^[DISCORD LOG]0^ %s", "Connection could not be established"), vars.TypeLogs.Error)
+	if err := discordwebhook.SendMessage(vars2.DiscordHook, msg); err != nil {
+		AddLogFile(fmt.Sprintf("2^[DISCORD LOG]0^ %s", "Connection could not be established"), vars2.TypeLogs.Error)
 		return
 	}
 }

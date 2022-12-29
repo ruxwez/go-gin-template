@@ -2,32 +2,31 @@ package internal
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-gin-template/internal/infrastructure/database"
-	"go-gin-template/internal/infrastructure/mail"
-	"go-gin-template/internal/infrastructure/router"
-	"go-gin-template/internal/infrastructure/utils/logs"
-	"go-gin-template/internal/infrastructure/utils/vars"
+	"go-gin-template/internal/database"
+	"go-gin-template/internal/mail"
+	"go-gin-template/internal/utils/logs"
+	vars2 "go-gin-template/internal/utils/vars"
 )
 
 func Run() {
-	mail.Connection(vars.MailConnection)
+	mail.Connection(vars2.MailConnection)
 
 	// Connection database
 	database.Connection()
 
 	// Config API
-	if !vars.Debug {
+	if !vars2.Debug {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
 	r := gin.Default()
 	r.Use(gin.Recovery())
-	router.Routes(r)
+	routes(r)
 
 	// Run API
-	err := r.Run("0.0.0.0" + vars.PortAPI)
+	err := r.Run("0.0.0.0" + vars2.PortAPI)
 	if err != nil {
-		logs.Send(vars.TypeLogs.Error, err.Error())
+		logs.Send(vars2.TypeLogs.Error, err.Error())
 		return
 	}
 }

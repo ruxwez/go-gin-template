@@ -1,4 +1,4 @@
-package interfaces
+package v1Interfaces
 
 import (
 	"github.com/gin-gonic/gin"

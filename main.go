@@ -3,8 +3,8 @@ package main
 import (
 	env "github.com/joho/godotenv"
 	"go-gin-template/internal"
-	"go-gin-template/internal/infrastructure/utils/logs"
-	"go-gin-template/internal/infrastructure/utils/vars"
+	"go-gin-template/internal/utils/logs"
+	"go-gin-template/internal/utils/vars"
 )
 
 func main() {

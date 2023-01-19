@@ -1,3 +1,4 @@
+[EN](./README.md) / ES
 # Template Gin Golang
 
 ## Instalación
